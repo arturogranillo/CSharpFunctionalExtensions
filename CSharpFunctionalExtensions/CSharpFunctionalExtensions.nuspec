@@ -1,17 +1,22 @@
 ﻿<?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
-    <metadata>
-        <id>CSharpFunctionalExtensions</id>
-        <version>1.6.2</version>
-        <authors>Vladimir Khorikov</authors>
-        <owners>Vladimir Khorikov</owners>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <licenseUrl>https://github.com/vkhorikov/CSharpFunctionalExtensions/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://www.pluralsight.com/courses/csharp-applying-functional-principles</projectUrl>
-        <description>
-          CSharpFunctionalExtensions - functional extensions for C#.
-        </description>
-        <language>en-US</language>
-        <tags>C# Functional</tags>
-    </metadata>
+  <metadata>
+    <id>CSharpFunctionalExtensions.Net40</id>
+    <version>1.6.2.2</version>
+    <authors>Vladimir Khorikov</authors>
+    <owners>Vladimir Khorikov</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/vkhorikov/CSharpFunctionalExtensions/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/arturogranillo/CSharpFunctionalExtensions.Net40</projectUrl>
+    <description>
+      CSharpFunctionalExtensions - functional extensions for C# Net 4.0
+    </description>
+    <language>en-US</language>
+    <tags>C# Functional</tags>
+    <dependencies>
+      <dependency id="Microsoft.Bcl" version="1.0.10" />
+      <dependency id="Microsoft.Bcl.Async" version="1.0.168" />
+      <dependency id="Microsoft.Bcl.Build" version="1.0.21" />
+    </dependencies>
+  </metadata>
 </package>
