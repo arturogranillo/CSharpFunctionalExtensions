@@ -3,7 +3,7 @@ Functional Extensions for C# NET 4.0
 [Original version](https://github.com/vkhorikov/CSharpFunctionalExtensions).
 
 ======================================================
-[![Nuget downloads](https://img.shields.io/nuget/v/csharpfunctionalextensions.svg)](https://www.nuget.org/packages/CSharpFunctionalExtensions.Net40/)
+[![Nuget downloads](https://img.shields.io/nuget/v/csharpfunctionalextensions.net40.svg)](https://www.nuget.org/packages/CSharpFunctionalExtensions.Net40/)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/vkhorikov/CSharpFunctionalExtensions/blob/master/LICENSE)
 
 This library helps write code in more functional way. To get to know more about the principles behind it, check out the [Applying Functional Principles in C# Pluralsight course](http://pluralsight.com/courses/csharp-applying-functional-principles).
