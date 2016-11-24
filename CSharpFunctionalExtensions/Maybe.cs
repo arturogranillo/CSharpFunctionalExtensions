@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace CSharpFunctionalExtensions
 {
     public struct Maybe<T> : IEquatable<Maybe<T>>
@@ -12,14 +11,29 @@ namespace CSharpFunctionalExtensions
             get
             {
                 if (HasNoValue)
+                {
                     throw new InvalidOperationException();
+                }
 
                 return _value;
             }
         }
 
-        public bool HasValue => _value != null;
-        public bool HasNoValue => !HasValue;
+        public bool HasValue
+        {
+            get
+            {
+                return _value != null;
+            }
+        }
+
+        public bool HasNoValue
+        {
+            get
+            {
+                return !HasValue;
+            }
+        }
 
         private Maybe(T value)
         {
@@ -39,7 +53,9 @@ namespace CSharpFunctionalExtensions
         public static bool operator ==(Maybe<T> maybe, T value)
         {
             if (maybe.HasNoValue)
+            {
                 return false;
+            }
 
             return maybe.Value.Equals(value);
         }
@@ -67,7 +83,9 @@ namespace CSharpFunctionalExtensions
             }
 
             if (!(obj is Maybe<T>))
+            {
                 return false;
+            }
 
             var other = (Maybe<T>)obj;
             return Equals(other);
@@ -76,10 +94,14 @@ namespace CSharpFunctionalExtensions
         public bool Equals(Maybe<T> other)
         {
             if (HasNoValue && other.HasNoValue)
+            {
                 return true;
+            }
 
             if (HasNoValue || other.HasNoValue)
+            {
                 return false;
+            }
 
             return _value.Equals(other._value);
         }
@@ -87,7 +109,9 @@ namespace CSharpFunctionalExtensions
         public override int GetHashCode()
         {
             if (HasNoValue)
+            {
                 return 0;
+            }
 
             return _value.GetHashCode();
         }
@@ -95,7 +119,9 @@ namespace CSharpFunctionalExtensions
         public override string ToString()
         {
             if (HasNoValue)
+            {
                 return "No value";
+            }
 
             return Value.ToString();
         }

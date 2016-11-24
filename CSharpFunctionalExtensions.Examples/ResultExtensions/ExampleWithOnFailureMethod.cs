@@ -61,7 +61,7 @@ namespace CSharpFunctionalExtensions.Examples.ResultExtensions
 
             public Task RollbackLastTransactionAsync()
             {
-                return Task.FromResult(1);
+                return TaskEx.FromResult(1);
             }
         }
 

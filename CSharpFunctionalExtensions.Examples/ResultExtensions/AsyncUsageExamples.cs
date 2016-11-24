@@ -44,7 +44,7 @@ namespace CSharpFunctionalExtensions.Examples.ResultExtensions
 
         public Task<Maybe<Customer>> GetByIdAsync(long id)
         {
-            return Task.FromResult((Maybe<Customer>)new Customer());
+            return TaskEx.FromResult((Maybe<Customer>)new Customer());
         }
 
         public Maybe<Customer> GetById(long id)
@@ -71,7 +71,7 @@ namespace CSharpFunctionalExtensions.Examples.ResultExtensions
 
             public Task PromoteAsync()
             {
-                return Task.FromResult(1);
+                return TaskEx.FromResult(1);
             }
         }
 
@@ -84,7 +84,7 @@ namespace CSharpFunctionalExtensions.Examples.ResultExtensions
 
             public Task<Result> SendPromotionNotificationAsync(string email)
             {
-                return Task.FromResult(Result.Ok());
+                return TaskEx.FromResult(Result.Ok());
             }
         }
     }

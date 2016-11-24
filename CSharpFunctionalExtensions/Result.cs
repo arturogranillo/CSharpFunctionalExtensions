@@ -8,8 +8,15 @@ namespace CSharpFunctionalExtensions
 {
     internal sealed class ResultCommonLogic
     {
-        public bool IsFailure { get; }
-        public bool IsSuccess => !IsFailure;
+        public bool IsFailure { get; private set; }
+
+        public bool IsSuccess
+        {
+            get
+            {
+                return !IsFailure;
+            }
+        }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly string _error;
@@ -20,7 +27,9 @@ namespace CSharpFunctionalExtensions
             get
             {
                 if (IsSuccess)
+                {
                     throw new InvalidOperationException("There is no error message for success.");
+                }
 
                 return _error;
             }
@@ -32,12 +41,16 @@ namespace CSharpFunctionalExtensions
             if (isFailure)
             {
                 if (string.IsNullOrEmpty(error))
-                    throw new ArgumentNullException(nameof(error), "There must be error message for failure.");
+                {
+                    throw new ArgumentNullException("error", "There must be error message for failure.");
+                }
             }
             else
             {
                 if (error != null)
-                    throw new ArgumentException("There should be no error message for success.", nameof(error));
+                {
+                    throw new ArgumentException("There should be no error message for success.", "error");
+                }
             }
 
             IsFailure = isFailure;
@@ -53,9 +66,29 @@ namespace CSharpFunctionalExtensions
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly ResultCommonLogic _logic;
 
-        public bool IsFailure => _logic.IsFailure;
-        public bool IsSuccess => _logic.IsSuccess;
-        public string Error => _logic.Error;
+        public bool IsFailure
+        {
+            get
+            {
+                return _logic.IsFailure;
+            }
+        }
+
+        public bool IsSuccess
+        {
+            get
+            {
+                return _logic.IsSuccess;
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return _logic.Error;
+            }
+        }
 
         [DebuggerStepThrough]
         private Result(bool isFailure, string error)
@@ -97,7 +130,9 @@ namespace CSharpFunctionalExtensions
             foreach (Result result in results)
             {
                 if (result.IsFailure)
+                {
                     return Fail(result.Error);
+                }
             }
 
             return Ok();
@@ -115,7 +150,9 @@ namespace CSharpFunctionalExtensions
             List<Result> failedResults = results.Where(x => x.IsFailure).ToList();
 
             if (!failedResults.Any())
+            {
                 return Ok();
+            }
 
             string errorMessage = string.Join(errorMessagesSeparator, failedResults.Select(x => x.Error).ToArray());
             return Fail(errorMessage);
@@ -134,9 +171,29 @@ namespace CSharpFunctionalExtensions
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly ResultCommonLogic _logic;
 
-        public bool IsFailure => _logic.IsFailure;
-        public bool IsSuccess => _logic.IsSuccess;
-        public string Error => _logic.Error;
+        public bool IsFailure
+        {
+            get
+            {
+                return _logic.IsFailure;
+            }
+        }
+
+        public bool IsSuccess
+        {
+            get
+            {
+                return _logic.IsSuccess;
+            }
+        }
+
+        public string Error
+        {
+            get
+            {
+                return _logic.Error;
+            }
+        }
 
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly T _value;
@@ -147,7 +204,9 @@ namespace CSharpFunctionalExtensions
             get
             {
                 if (!IsSuccess)
+                {
                     throw new InvalidOperationException("There is no value for failure.");
+                }
 
                 return _value;
             }
@@ -157,7 +216,9 @@ namespace CSharpFunctionalExtensions
         internal Result(bool isFailure, T value, string error)
         {
             if (!isFailure && value == null)
-                throw new ArgumentNullException(nameof(value));
+            {
+                throw new ArgumentNullException("There is no value for result.");
+            }
 
             _logic = new ResultCommonLogic(isFailure, error);
             _value = value;
@@ -166,9 +227,13 @@ namespace CSharpFunctionalExtensions
         public static implicit operator Result(Result<T> result)
         {
             if (result.IsSuccess)
+            {
                 return Result.Ok();
+            }
             else
+            {
                 return Result.Fail(result.Error);
+            }
         }
     }
 }
